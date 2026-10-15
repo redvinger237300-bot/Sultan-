@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SULTAN SCRIPT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0710;color:#fff;font-family:Arial,sans-serif}
+header{padding:20px;background:#160d1d;border-bottom:1px solid #ff4fb8}
+h1{margin:0;color:#ff4fb8;text-align:center}
+.hero{text-align:center;padding:35px 15px}
+.hero p{color:#c5b5ca}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #53304f;background:#1b1222;color:white;margin:15px 0}
+main{max-width:850px;margin:auto;padding:15px}
+.card{background:#18101f;border:1px solid #492440;border-radius:14px;padding:18px;margin-bottom:14px}
+.card h3{color:#ff83d0;margin-top:0}
+.tag{color:#8dffbd;font-size:12px}
+button{background:#ff4fb8;border:0;border-radius:9px;padding:11px 15px;font-weight:bold;cursor:pointer;margin:5px 5px 0 0}
+footer{text-align:center;padding:25px;color:#b8a8bc}
+</style>
+</head>
+<body>
+<header><h1>👑 SULTAN SCRIPT</h1></header>
+<section class="hero">
+<h2>SCRIPT GRATIS BY SULTAN</h2>
+<p>Kumpulan script gratis, contoh kode, dan update terbaru.</p>
+<a href="#daftar"><button>Lihat Script ↓</button></a>
+</section>
+<main id="daftar">
+<h2>📦 Daftar Script</h2>
+<input id="cari" placeholder="🔎 Cari script..." oninput="render()">
+<div id="list"></div>
+</main>
+<footer>© <span id="tahun"></span> SULTAN SCRIPT • Gratis untuk dijelajahi</footer>
+<script>
+const scripts=[
+ {nama:"Contoh Lua",kategori:"ROBLOX",deskripsi:"Contoh dasar bahasa Lua.",kode:'print("Halo Sultan!")'},
+ {nama:"Tombol HTML",kategori:"WEBSITE",deskripsi:"Contoh tombol interaktif.",kode:'<button onclick="alert(\\'Halo Sultan!\\')">Klik</button>'},
+ {nama:"Kalkulator Mini",kategori:"TOOLS",deskripsi:"Contoh fungsi penjumlahan JavaScript.",kode:'function tambah(a,b){return a+b;}\\nconsole.log(tambah(2,3));'}
+];
+function render(){
+ const q=document.getElementById("cari").value.toLowerCase();
+ const hasil=scripts.filter(s=>(s.nama+" "+s.kategori+" "+s.deskripsi).toLowerCase().includes(q));
+ document.getElementById("list").innerHTML=hasil.map(s=>`
+ <article class="card">
+ <span class="tag">● GRATIS · ${s.kategori}</span>
+ <h3>${s.nama}</h3><p>${s.deskripsi}</p>
+ <button onclick="lihat(${scripts.indexOf(s)})">Lihat Kode</button>
+ <button onclick="salin(${scripts.indexOf(s)})">Salin Kode</button>
+ </article>`).join("")||"<p>Script tidak ditemukan.</p>";
+}
+function lihat(i){alert(scripts[i].nama+"\\n\\n"+scripts[i].kode.replace(/\\n/g,"\\n"))}
+async function salin(i){
+ try{
+ await navigator.clipboard.writeText(scripts[i].kode.replace(/\\n/g,"\\n"));
+ alert("Kode berhasil disalin!");
+ }catch(e){lihat(i);alert("Salin kode dari jendela yang terbuka.")}
+}
+document.getElementById("tahun").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
