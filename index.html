@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0710">
+  <meta name="description" content="Sultan Script — kumpulan script gratis dan update terbaru.">
+  <title>SULTAN SCRIPT | Script Gratis</title>
+  <style>
+    :root {
+      --bg: #0b0710;
+      --panel: #15101b;
+      --panel2: #1d1425;
+      --pink: #ff4fb8;
+      --pink2: #ff83d0;
+      --text: #fff7fd;
+      --muted: #b8a8bc;
+      --border: #38243e;
+      --green: #8dffbd;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text);
+      background: radial-gradient(ellipse at top, #28122d 0, var(--bg) 48%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(11,7,16,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; justify-content: space-between; align-items: center; gap: 14px; min-height: 68px; }
+    .brand { font-weight: 950; letter-spacing: 1px; font-size: 18px; }
+    .brand span { color: var(--pink); }
+    .nav a { color: var(--muted); font-size: 14px; }
+    .hero { padding: 56px 0 30px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; border: 1px solid #69345f; color: var(--pink2);
+      background: #211025; border-radius: 999px; padding: 7px 12px;
+      font-size: 12px; font-weight: 800; letter-spacing: 1.2px;
+    }
+    h1 { font-size: clamp(36px, 8vw, 66px); line-height: 1.03; margin: 20px 0 12px; letter-spacing: -2px; }
+    h1 span { color: var(--pink); text-shadow: 0 0 30px #ff4fb844; }
+    .hero p { max-width: 600px; margin: 0 auto; color: var(--muted); line-height: 1.7; }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .btn {
+      border: 1px solid var(--border); border-radius: 12px; padding: 11px 16px;
+      color: var(--text); background: var(--panel2); font-weight: 800;
+    }
+    .btn.primary { color: #230b1d; border-color: transparent; background: var(--pink); }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 22px auto 0; max-width: 620px; }
+    .stat { border: 1px solid var(--border); background: #140d1a; border-radius: 14px; padding: 14px 8px; }
+    .stat strong { display: block; font-size: 20px; color: var(--pink2); }
+    .stat small { color: var(--muted); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 28px 0 16px; }
+    h2 { font-size: 24px; margin: 0; }
+    .section-head p { color: var(--muted); font-size: 13px; margin: 5px 0 0; }
+    .tools { display: grid; grid-template-columns: 1fr 170px; gap: 10px; margin-bottom: 16px; }
+    input, select {
+      width: 100%; color: var(--text); background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 14px; outline: none;
+    }
+    input:focus, select:focus { border-color: var(--pink); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .card {
+      border: 1px solid var(--border); background: linear-gradient(160deg, #1b1222, #110c16);
+      border-radius: 17px; padding: 17px; min-width: 0;
+    }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .symbol {
+      display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+      background: #32172e; color: var(--pink2); font-size: 21px;
+    }
+    .tag { border-radius: 999px; font-size: 10px; font-weight: 900; letter-spacing: .5px; padding: 5px 8px; color: var(--green); background: #143025; }
+    .tag.pink { color: var(--pink2); background: #35152f; }
+    .card h3 { margin: 15px 0 6px; font-size: 17px; }
+    .card p { min-height: 44px; color: var(--muted); font-size: 13px; line-height: 1.6; margin: 0 0 14px; }
+    .card-bottom { display: flex; gap: 8px; }
+    .card-bottom button { flex: 1; padding: 9px 10px; font-size: 12px; }
+    .empty { display: none; padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: 14px; }
+    .notice { margin: 24px 0; padding: 15px; border: 1px solid #55354f; border-radius: 14px; background: #1b1020; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    footer { border-top: 1px solid var(--border); padding: 24px 0 32px; margin-top: 38px; color: var(--muted); font-size: 12px; text-align: center; }
+    .toast {
+      position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px);
+      opacity: 0; pointer-events: none; transition: .2s; z-index: 10;
+      padding: 11px 16px; border-radius: 12px; background: var(--pink); color: #210b1b; font-weight: 850;
+      box-shadow: 0 10px 35px #0008;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero { padding-top: 42px; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 22px, 1080px); }
+      .nav { min-height: 60px; }
+      .nav a { font-size: 12px; }
+      .grid { grid-template-columns: 1fr; }
+      .card p { min-height: 0; }
+      .tools { grid-template-columns: 1fr; }
+      .stats { gap: 7px; }
+      .stat strong { font-size: 17px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="Sultan Script beranda">👑 SULTAN<span>SCRIPT</span></a>
+      <a href="#daftar">📦 Daftar Script</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow">✦ FREE SCRIPT COLLECTION ✦</span>
+      <h1>SCRIPT GRATIS<br><span>BY SULTAN</span></h1>
+      <p>Temukan koleksi script, alat, dan contoh kode. Cari yang kamu butuhkan, baca keterangannya, lalu salin kode contoh dengan satu sentuhan.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#daftar">Jelajahi Script ↓</a>
+        <a class="btn" href="#tentang">Tentang Website</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="totalCount">6</strong><small>Contoh Script</small></div>
+        <div class="stat"><strong>GRATIS</strong><small>Akses terbuka</small></div>
+        <div class="stat"><strong>NO KEY*</strong><small>Untuk contoh lokal</small></div>
+      </div>
+    </section>
+
+    <section id="daftar">
+      <div class="section-head">
+        <div><h2>📂 Daftar Script</h2><p>Pilih kategori atau cari nama script.</p></div>
+      </div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="🔎 Cari script..." aria-label="Cari script">
+        <select id="category" aria-label="Filter kategori">
+          <option value="all">Semua kategori</option>
+          <option value="Roblox">Roblox</option>
+          <option value="Website">Website</option>
+          <option value="Tools">Tools</option>
+        </select>
+      </div>
+      <div class="grid" id="scriptGrid"></div>
+      <div class="empty" id="empty">Script tidak ditemukan. Coba kata kunci lain.</div>
+    </section>
+
+    <section class="notice" id="tentang">
+      <strong style="color:var(--pink2)">⚠️ Catatan</strong><br>
+      Website ini berisi contoh kode awal. Ganti contoh script dengan kode milikmu sendiri sebelum dipublikasikan. Periksa kode sebelum digunakan, jangan masukkan password atau token pribadi, dan gunakan script hanya pada proyek atau game yang mengizinkannya. Label “NO KEY” tidak berarti semua script eksternal bebas key.
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">👑 <strong style="color:var(--pink2)">SULTAN SCRIPT</strong><br>Script gratis • Tampilan responsif • Dibuat dengan HTML, CSS & JavaScript<br><span id="year"></span> © Sultan. Gunakan dengan bijak.
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Kode disalin!</div>
+
+  <script>
+    // Ganti atau tambahkan data di daftar ini dengan script milikmu sendiri.
+    // Kode contoh sengaja aman dan tidak menjalankan exploit atau mengubah game orang lain.
+    const scripts = [
+      {
+        title: "Contoh Lua: Pesan",
+        category: "Roblox",
+        icon: "⌘",
+        tag: "LUA",
+        description: "Contoh dasar Lua untuk menampilkan pesan di output.",
+        code: 'print("Halo dari Sultan Script!")'
+      },
+      {
+        title: "Contoh Lua: Fungsi",
+        category: "Roblox",
+        icon: "⚙️",
+        tag: "LUA",
+        description: "Belajar membuat dan memanggil fungsi sederhana.",
+        code: 'local function sapa(nama)\\n    print("Halo, " .. nama .. "!")\\nend\\n\\nsapa("Sultan")'
+      },
+      {
+        title: "Tombol HTML",
+        category: "Website",
+        icon: "🌐",
+        tag: "HTML",
+        description: "Contoh tombol yang menampilkan pesan saat diklik.",
+        code: '<button onclick="alert(\\'Halo Sultan!\\')">Klik aku</button>'
+      },
+      {
+        title: "Jam Digital",
+        category: "Website",
+        icon: "🕒",
+        tag: "JS",
+        description: "Contoh menampilkan waktu lokal di halaman web.",
+        code: '<p id="jam"></p>\\n<script>document.getElementById("jam").textContent = new Date().toLocaleTimeString();<\\/script>'
+      },
+      {
+        title: "Kalkulator Mini",
+        category: "Tools",
+        icon: "➗",
+        tag: "JS",
+        description: "Fungsi kecil untuk menjumlahkan dua angka.",
+        code: 'function tambah(a, b) {\\n  return Number(a) + Number(b);\\n}\\n\\nconsole.log(tambah(5, 3)); // 8'
+      },
+      {
+        title: "Info Perangkat",
+        category: "Tools",
+        icon: "📱",
+        tag: "JS",
+        description: "Contoh membaca ukuran layar browser.",
+        code: 'console.log("Lebar layar:", window.innerWidth);\\nconsole.log("Tinggi layar:", window.innerHeight);'
+      }
+    ];
+
+    const grid = document.getElementById("scriptGrid");
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const empty = document.getElementById("empty");
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function render() {
+      const term = search.value.trim().toLowerCase();
+      const cat = category.value;
+      const filtered = scripts.filter(item =>
+        (cat === "all" || item.category === cat) &&
+        (item.title + " " + item.description + " " + item.category).toLowerCase().includes(term)
+      );
+
+      grid.innerHTML = filtered.map((item, index) => {
+        const realIndex = scripts.indexOf(item);
+        return `
+          <article class="card">
+            <div class="card-top">
+              <div class="symbol">${item.icon}</div>
+              <span class="tag ${item.category === "Roblox" ? "pink" : ""}">${item.tag}</span>
+            </div>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.description)}</p>
+            <div class="card-top" style="margin-bottom:12px">
+              <span style="font-size:11px;color:var(--muted)">${escapeHtml(item.category)}</span>
+              <span style="font-size:10px;color:var(--green)">● GRATIS</span>
+            </div>
+            <div class="card-bottom">
+              <button class="btn primary" onclick="copyCode(${realIndex})">📋 Salin kode</button>
+              <button class="btn" onclick="showCode(${realIndex})">Lihat</button>
+            </div>
+          </article>`;
+      }).join("");
+
+      empty.style.display = filtered.length ? "none" : "block";
+      document.getElementById("totalCount").textContent = scripts.length;
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[char]));
+    }
+
+    function notify(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    async function copyCode(index) {
+      const code = scripts[index].code.replace(/\\n/g, "\n");
+      try {
+        await navigator.clipboard.writeText(code);
+        notify("Kode berhasil disalin!");
+      } catch (error) {
+        const area = document.createElement("textarea");
+        area.value = code;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        const ok = document.execCommand("copy");
+        area.remove();
+        notify(ok ? "Kode berhasil disalin!" : "Salin manual dari menu Lihat.");
+      }
+    }
+
+    function showCode(index) {
+      const item = scripts[index];
+      alert(item.title + "\\n\\n" + item.code.replace(/\\n/g, "\n"));
+    }
+
+    search.addEventListener("input", render);
+    category.addEventListener("change", render);
+    document.getElementById("year").textContent = new Date().getFullYear();
+    render();
+  </script>
+</body>
+</html>
